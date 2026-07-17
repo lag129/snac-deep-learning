@@ -52,6 +52,10 @@ def _(BATCH_SIZE, DATA_DIR, IMAGE_SIZE, tf):
         batch_size=BATCH_SIZE,
     )
 
+    val_test_ds = val_test_ds.cache()
+    for _ in val_test_ds:
+        pass
+
     val_size = len(val_test_ds) // 2
     val_ds = val_test_ds.take(val_size)
     test_ds = val_test_ds.skip(val_size)
